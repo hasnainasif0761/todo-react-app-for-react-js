@@ -12,7 +12,7 @@ function TodoApp() {
   const addTodo = () => {
     if (input.trim() !== '') {
       setTodos([...todos, { 
-        id: Math.random(), 
+        id: Date.now(), 
         text: input, 
         completed: false 
       }]);
