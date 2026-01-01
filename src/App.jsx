@@ -11,17 +11,19 @@ function TodoApp() {
 
   const addTodo = () => {
     if (input.trim() !== '') {
-      setTodos([...todos, { 
-        id: Date.now(), 
-        text: input, 
-        completed: false 
+      setTodos([...todos, {
+        id: Date.now(),
+        text: input,
+        completed: false
       }]);
       setInput('');
+    }else{
+      alert('Please fill your input field 🚫❓💯')
     }
   };
 
   const toggleTodo = (id) => {
-    setTodos(todos.map(todo => 
+    setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     ));
   };
@@ -61,41 +63,40 @@ function TodoApp() {
         </div>
 
         {/* Todo List */}
-          {/* Todo List with nice scrollable area */}
-<ul className="space-y-3 mb-8 max-h-60 overflow-y-auto border border-gray-200 rounded-lg bg-gray-50 p-4">
-  {todos.length === 0 ? (
-    <li className="text-center text-gray-500 py-8">
-      No todos yet. Add one above! 👆
-    </li>
-  ) : (
-    todos.map(todo => (
-      <li
-        key={todo.id}
-        className="flex items-center gap-3 bg-white p-4 rounded-lg hover:bg-gray-100 transition-shadow shadow-sm"
-      >
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={() => toggleTodo(todo.id)}
-          className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 cursor-pointer"
-        />
-        <span
-          className={`flex-1 ${
-            todo.completed ? 'line-through text-gray-500' : 'text-gray-800 font-medium'
-          }`}
-        >
-          {todo.text}
-        </span>
-        <button
-          onClick={() => deleteTodo(todo.id)}
-          className="text-red-500 hover:text-red-700 font-bold text-xl leading-none cursor-pointer"
-        >
-          ×
-        </button>
-      </li>
-    ))
-  )}
-</ul>
+        {/* Todo List with nice scrollable area */}
+        <ul className="space-y-3 mb-8 max-h-60 overflow-y-auto border border-gray-200 rounded-lg bg-gray-50 p-4">
+          {todos.length === 0 ? (
+            <li className="text-center text-gray-500 py-8">
+              No todos yet. Add one above! 👆
+            </li>
+          ) : (
+            todos.map(todo => (
+              <li
+                key={todo.id}
+                className="flex items-center gap-3 bg-white p-4 rounded-lg hover:bg-gray-100 transition-shadow shadow-sm"
+              >
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => toggleTodo(todo.id)}
+                  className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 cursor-pointer"
+                />
+                <span
+                  className={`flex-1 ${todo.completed ? 'line-through text-gray-500' : 'text-gray-800 font-medium'
+                    }`}
+                >
+                  {todo.text}
+                </span>
+                <button
+                  onClick={() => deleteTodo(todo.id)}
+                  className="text-red-500 hover:text-red-700 font-bold text-xl leading-none cursor-pointer"
+                >
+                  ×
+                </button>
+              </li>
+            ))
+          )}
+        </ul>
 
         {/* Statistics - Derived State */}
         <div className="grid grid-cols-3 gap-4 text-center">
